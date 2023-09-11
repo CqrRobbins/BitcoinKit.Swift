@@ -39,15 +39,14 @@ class Manager {
 
     private func initAdapter(restoreData: String, syncMode: BitcoinCore.SyncMode) {
         let configuration = Configuration.shared
-        let logger = Logger(minLogLevel: Configuration.shared.minLogLevel)
 
         let words = restoreData.components(separatedBy: .whitespacesAndNewlines)
         if words.count > 1 {
-            adapter = BitcoinAdapter(words: words, purpose: configuration.purpose, testMode: configuration.testNet, syncMode: syncMode, logger: logger)
+            adapter = BitcoinAdapter(words: words, purpose: configuration.purpose, testMode: configuration.testNet, syncMode: syncMode, enableLogger: configuration.enableLogger)
         } else {
             do {
                 let _ = try HDExtendedKey(extendedKey: restoreData)
-                adapter = BitcoinAdapter(extendedKey: restoreData, purpose: configuration.purpose, testMode: configuration.testNet, syncMode: syncMode, logger: logger)
+                adapter = BitcoinAdapter(extendedKey: restoreData, purpose: configuration.purpose, testMode: configuration.testNet, syncMode: syncMode, enableLogger: configuration.enableLogger)
             } catch {
                 adapter = nil
             }

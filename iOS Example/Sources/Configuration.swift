@@ -5,12 +5,12 @@ import HdWalletKit
 class Configuration {
     static let shared = Configuration()
 
-    let minLogLevel: Logger.Level = .verbose
+    let enableLogger = false
     let testNet = false
     let purpose = Purpose.bip84
     let defaultWords = [
 //        "current force clump paper shrug extra zebra employ prefer upon mobile hire",
-        "popular game latin harvest silly excess much valid elegant illness edge silk",
+        "lock basket subject color juice subject glide robot diet point note episode",
     ]
 
 }

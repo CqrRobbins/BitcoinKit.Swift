@@ -57,6 +57,7 @@
 		D36AAA9223A2125D0065B32B /* Manager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
 		D36AAA9423A2125D0065B32B /* TransactionRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionRecord.swift; sourceTree = "<group>"; };
 		D36AAAAB23A212E30065B32B /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
+		FBACE49C2AAF0FCA00231C71 /* BitcoinCore.Swift */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = BitcoinCore.Swift; path = ../../BitcoinCore.Swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +75,7 @@
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
+				FBACE49B2AAF0FCA00231C71 /* Packages */,
 				607FACD21AFB9204008FA782 /* Sources */,
 				6BE77D6F28F687F400BD03EF /* BitcoinKit Demo.app */,
 			);
@@ -147,6 +149,14 @@
 				2FA5DACF4DE83AC5FE512D28 /* Extensions.swift */,
 			);
 			path = Core;
+			sourceTree = "<group>";
+		};
+		FBACE49B2AAF0FCA00231C71 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				FBACE49C2AAF0FCA00231C71 /* BitcoinCore.Swift */,
+			);
+			name = Packages;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

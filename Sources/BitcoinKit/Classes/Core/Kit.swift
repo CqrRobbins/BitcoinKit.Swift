@@ -19,7 +19,7 @@ public class Kit: AbstractKit {
         }
     }
 
-    public convenience init(seed: Data, purpose: Purpose, walletId: String, syncMode: BitcoinCore.SyncMode = .api, networkType: NetworkType = .mainNet, confirmationsThreshold: Int = 6, logger: Logger?) throws {
+    public convenience init(seed: Data, purpose: Purpose, walletId: String, syncMode: BitcoinCore.SyncMode = .api, networkType: NetworkType = .mainNet, confirmationsThreshold: Int = 6, enableLogger: Bool = false) throws {
         let version: HDExtendedKeyVersion
         switch purpose {
         case .bip44: version = .xprv
@@ -35,12 +35,12 @@ public class Kit: AbstractKit {
                 syncMode: syncMode,
                 networkType: networkType,
                 confirmationsThreshold: confirmationsThreshold,
-                logger: logger)
+                enableLogger: enableLogger)
     }
 
-    public init(extendedKey: HDExtendedKey, purpose: Purpose, walletId: String, syncMode: BitcoinCore.SyncMode = .api, networkType: NetworkType = .mainNet, confirmationsThreshold: Int = 6, logger: Logger?) throws {
+    public init(extendedKey: HDExtendedKey, purpose: Purpose, walletId: String, syncMode: BitcoinCore.SyncMode = .api, networkType: NetworkType = .mainNet, confirmationsThreshold: Int = 6, enableLogger: Bool = false) throws {
         let network: INetwork
-        let logger = logger ?? Logger(minLogLevel: .verbose)
+        let logger = enableLogger ? Logger(minLogLevel: .verbose).scoped(with: "EchooWallet-Bitcoin") : nil
 
         let initialSyncApi: ISyncTransactionApi?
         switch networkType {
