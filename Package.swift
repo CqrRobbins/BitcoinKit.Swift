@@ -13,7 +13,7 @@ let package = Package(
             targets: ["BitcoinKit"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/HEchooo/BitcoinCore.Swift.git", .upToNextMinor(from: "2.0.7")),
+        .package(url: "https://github.com/HEchooo/BitcoinCore.Swift.git", .upToNextMinor(from: "2.0.8")),
         .package(url: "https://github.com/horizontalsystems/HdWalletKit.Swift.git", .upToNextMinor(from: "1.2.1")),
         .package(url: "https://github.com/HEchooo/Hodler.Swift.git", .upToNextMajor(from: "2.0.1")),
         .package(url: "https://github.com/horizontalsystems/HsToolKit.Swift.git", .upToNextMajor(from: "2.0.0")),

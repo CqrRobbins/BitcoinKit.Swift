@@ -55,8 +55,8 @@ public class Kit: AbstractKit {
                 initialSyncApi = nil
         }
 
-//        let databaseFilePath = try DirectoryHelper.directoryURL(for: Kit.name).appendingPathComponent(Kit.databaseFileName(walletId: walletId, networkType: networkType, purpose: purpose, syncMode: syncMode)).path
-        let storage = GrdbStorage.shared
+        let databaseFilePath = try DirectoryHelper.directoryURL(for: Kit.name).appendingPathComponent(Kit.databaseFileName(walletId: walletId, networkType: networkType, purpose: purpose, syncMode: syncMode)).path
+        let storage = GrdbStorage(databaseFilePath: databaseFilePath)
 
         let paymentAddressParser = PaymentAddressParser(validScheme: "bitcoin", removeScheme: true)
         let scriptConverter = ScriptConverter()
