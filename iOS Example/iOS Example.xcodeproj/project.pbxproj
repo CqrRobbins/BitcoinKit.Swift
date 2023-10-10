@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -30,6 +30,10 @@
 		D36AAAA823A2125E0065B32B /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36AAA9223A2125D0065B32B /* Manager.swift */; };
 		D36AAAAA23A2125E0065B32B /* TransactionRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36AAA9423A2125D0065B32B /* TransactionRecord.swift */; };
 		D36AAAAC23A212E30065B32B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D36AAAAB23A212E30065B32B /* LaunchScreen.xib */; };
+		FBD14A012AD4DCA6003F6518 /* BitcoinKit in Frameworks */ = {isa = PBXBuildFile; productRef = FBD14A002AD4DCA6003F6518 /* BitcoinKit */; };
+		FBD14A042AD4DCCD003F6518 /* BitcoinCore in Frameworks */ = {isa = PBXBuildFile; productRef = FBD14A032AD4DCCD003F6518 /* BitcoinCore */; };
+		FBD14A0A2AD4DEBA003F6518 /* BitcoinCore in Frameworks */ = {isa = PBXBuildFile; productRef = FBD14A092AD4DEBA003F6518 /* BitcoinCore */; };
+		FBD14A0D2AD54258003F6518 /* BitcoinKit in Frameworks */ = {isa = PBXBuildFile; productRef = FBD14A0C2AD54258003F6518 /* BitcoinKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,7 +61,6 @@
 		D36AAA9223A2125D0065B32B /* Manager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
 		D36AAA9423A2125D0065B32B /* TransactionRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionRecord.swift; sourceTree = "<group>"; };
 		D36AAAAB23A212E30065B32B /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
-		FBACE49C2AAF0FCA00231C71 /* BitcoinCore.Swift */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = BitcoinCore.Swift; path = ../../BitcoinCore.Swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,7 +68,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FBD14A012AD4DCA6003F6518 /* BitcoinKit in Frameworks */,
+				FBD14A0D2AD54258003F6518 /* BitcoinKit in Frameworks */,
+				FBD14A0A2AD4DEBA003F6518 /* BitcoinCore in Frameworks */,
 				6BC11A5628EEAF0D0001FDF1 /* BitcoinKit in Frameworks */,
+				FBD14A042AD4DCCD003F6518 /* BitcoinCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -154,7 +161,6 @@
 		FBACE49B2AAF0FCA00231C71 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
-				FBACE49C2AAF0FCA00231C71 /* BitcoinCore.Swift */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
@@ -177,6 +183,10 @@
 			name = "iOS Example";
 			packageProductDependencies = (
 				6BC11A5528EEAF0D0001FDF1 /* BitcoinKit */,
+				FBD14A002AD4DCA6003F6518 /* BitcoinKit */,
+				FBD14A032AD4DCCD003F6518 /* BitcoinCore */,
+				FBD14A092AD4DEBA003F6518 /* BitcoinCore */,
+				FBD14A0C2AD54258003F6518 /* BitcoinKit */,
 			);
 			productName = BitcoinKit;
 			productReference = 6BE77D6F28F687F400BD03EF /* BitcoinKit Demo.app */;
@@ -210,6 +220,8 @@
 			mainGroup = 607FACC71AFB9204008FA782;
 			packageReferences = (
 				6B7C7E6228EC00770053F11A /* XCRemoteSwiftPackageReference "Cuckoo" */,
+				FBD14A082AD4DEBA003F6518 /* XCLocalSwiftPackageReference "../../BitcoinCore.Swift" */,
+				FBD14A0B2AD54258003F6518 /* XCLocalSwiftPackageReference ".." */,
 			);
 			productRefGroup = 607FACC71AFB9204008FA782;
 			projectDirPath = "";
@@ -428,6 +440,17 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCLocalSwiftPackageReference section */
+		FBD14A082AD4DEBA003F6518 /* XCLocalSwiftPackageReference "../../BitcoinCore.Swift" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../../BitcoinCore.Swift;
+		};
+		FBD14A0B2AD54258003F6518 /* XCLocalSwiftPackageReference ".." */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ..;
+		};
+/* End XCLocalSwiftPackageReference section */
+
 /* Begin XCRemoteSwiftPackageReference section */
 		6B7C7E6228EC00770053F11A /* XCRemoteSwiftPackageReference "Cuckoo" */ = {
 			isa = XCRemoteSwiftPackageReference;
@@ -441,6 +464,22 @@
 
 /* Begin XCSwiftPackageProductDependency section */
 		6BC11A5528EEAF0D0001FDF1 /* BitcoinKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = BitcoinKit;
+		};
+		FBD14A002AD4DCA6003F6518 /* BitcoinKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = BitcoinKit;
+		};
+		FBD14A032AD4DCCD003F6518 /* BitcoinCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = BitcoinCore;
+		};
+		FBD14A092AD4DEBA003F6518 /* BitcoinCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = BitcoinCore;
+		};
+		FBD14A0C2AD54258003F6518 /* BitcoinKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = BitcoinKit;
 		};

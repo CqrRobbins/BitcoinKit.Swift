@@ -90,7 +90,14 @@ class BalanceController: UITableViewController {
     }
 
     private func update() {
+        print(adapter?.balanceInfo.spendable, adapter?.balanceInfo.unspendable, adapter?.balanceInfo.waitConfirmedSpendable)
         tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .none)
+        print(adapter?.waitConfirmSpendableBlance, "---->")
+        if let transactions = adapter?.transactions(fromUid: nil, type: .incoming, limit: 500), let lastH = adapter?.lastBlockInfo?.height {
+            let ss = transactions.filter({lastH - ($0.blockHeight ?? 0) < 6})
+            let value = ss.map {$0.amount}
+            print(value)
+        }
     }
 
 }

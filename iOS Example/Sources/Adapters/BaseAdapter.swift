@@ -110,6 +110,14 @@ extension BaseAdapter {
     var spendableBalance: Decimal {
         Decimal(abstractKit.balance.spendable) / coinRate
     }
+    
+    var waitConfirmSpendableBlance: Decimal {
+        Decimal(abstractKit.balance.waitConfirmedSpendable) / coinRate
+    }
+    
+    var balanceInfo: BalanceInfo {
+        abstractKit.balance
+    }
 
     var unspendableBalance: Decimal {
         Decimal(abstractKit.balance.unspendable) / coinRate
