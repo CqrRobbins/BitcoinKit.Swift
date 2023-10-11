@@ -111,8 +111,9 @@ extension BaseAdapter {
         Decimal(abstractKit.balance.spendable) / coinRate
     }
     
-    var waitConfirmSpendableBlance: Decimal {
-        Decimal(abstractKit.balance.waitConfirmedSpendable) / coinRate
+    var waitConfirmSpendableBlance: Int {
+        let lastBlockHeight = lastBlockInfo?.height ?? 0
+        return abstractKit.transactions(type: .incoming).filter { lastBlockHeight - ($0.blockHeight ?? 0) > 0 &&  lastBlockHeight - ($0.blockHeight ?? 0) < 6 }.map {$0.amount}.reduce(0, +)
     }
     
     var balanceInfo: BalanceInfo {
