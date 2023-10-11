@@ -30,6 +30,7 @@
 		D36AAAA823A2125E0065B32B /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36AAA9223A2125D0065B32B /* Manager.swift */; };
 		D36AAAAA23A2125E0065B32B /* TransactionRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36AAA9423A2125D0065B32B /* TransactionRecord.swift */; };
 		D36AAAAC23A212E30065B32B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D36AAAAB23A212E30065B32B /* LaunchScreen.xib */; };
+		FB68DDF52AD68C41009C1AE0 /* BitcoinKit in Frameworks */ = {isa = PBXBuildFile; productRef = FB68DDF42AD68C41009C1AE0 /* BitcoinKit */; };
 		FBD14A012AD4DCA6003F6518 /* BitcoinKit in Frameworks */ = {isa = PBXBuildFile; productRef = FBD14A002AD4DCA6003F6518 /* BitcoinKit */; };
 		FBD14A042AD4DCCD003F6518 /* BitcoinCore in Frameworks */ = {isa = PBXBuildFile; productRef = FBD14A032AD4DCCD003F6518 /* BitcoinCore */; };
 		FBD14A0A2AD4DEBA003F6518 /* BitcoinCore in Frameworks */ = {isa = PBXBuildFile; productRef = FBD14A092AD4DEBA003F6518 /* BitcoinCore */; };
@@ -72,6 +73,7 @@
 				FBD14A0D2AD54258003F6518 /* BitcoinKit in Frameworks */,
 				FBD14A0A2AD4DEBA003F6518 /* BitcoinCore in Frameworks */,
 				6BC11A5628EEAF0D0001FDF1 /* BitcoinKit in Frameworks */,
+				FB68DDF52AD68C41009C1AE0 /* BitcoinKit in Frameworks */,
 				FBD14A042AD4DCCD003F6518 /* BitcoinCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -187,6 +189,7 @@
 				FBD14A032AD4DCCD003F6518 /* BitcoinCore */,
 				FBD14A092AD4DEBA003F6518 /* BitcoinCore */,
 				FBD14A0C2AD54258003F6518 /* BitcoinKit */,
+				FB68DDF42AD68C41009C1AE0 /* BitcoinKit */,
 			);
 			productName = BitcoinKit;
 			productReference = 6BE77D6F28F687F400BD03EF /* BitcoinKit Demo.app */;
@@ -221,7 +224,7 @@
 			packageReferences = (
 				6B7C7E6228EC00770053F11A /* XCRemoteSwiftPackageReference "Cuckoo" */,
 				FBD14A082AD4DEBA003F6518 /* XCLocalSwiftPackageReference "../../BitcoinCore.Swift" */,
-				FBD14A0B2AD54258003F6518 /* XCLocalSwiftPackageReference ".." */,
+				FB68DDF32AD68C41009C1AE0 /* XCRemoteSwiftPackageReference "BitcoinKit.Swift" */,
 			);
 			productRefGroup = 607FACC71AFB9204008FA782;
 			projectDirPath = "";
@@ -445,10 +448,6 @@
 			isa = XCLocalSwiftPackageReference;
 			relativePath = ../../BitcoinCore.Swift;
 		};
-		FBD14A0B2AD54258003F6518 /* XCLocalSwiftPackageReference ".." */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = ..;
-		};
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCRemoteSwiftPackageReference section */
@@ -460,11 +459,24 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		FB68DDF32AD68C41009C1AE0 /* XCRemoteSwiftPackageReference "BitcoinKit.Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/HEchooo/BitcoinKit.Swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.7;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
 		6BC11A5528EEAF0D0001FDF1 /* BitcoinKit */ = {
 			isa = XCSwiftPackageProductDependency;
+			productName = BitcoinKit;
+		};
+		FB68DDF42AD68C41009C1AE0 /* BitcoinKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FB68DDF32AD68C41009C1AE0 /* XCRemoteSwiftPackageReference "BitcoinKit.Swift" */;
 			productName = BitcoinKit;
 		};
 		FBD14A002AD4DCA6003F6518 /* BitcoinKit */ = {

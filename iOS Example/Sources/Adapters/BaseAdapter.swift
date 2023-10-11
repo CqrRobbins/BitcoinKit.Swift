@@ -112,7 +112,7 @@ extension BaseAdapter {
     }
     
     var waitConfirmSpendableBlance: Int {
-        let lastBlockHeight = lastBlockInfo?.height ?? 0
+        let lastBlockHeight = (abstractKit.lastBlockInfo?.height ?? 0) + 1
         return abstractKit.transactions(type: .incoming).filter { lastBlockHeight - ($0.blockHeight ?? 0) > 0 &&  lastBlockHeight - ($0.blockHeight ?? 0) < 6 }.map {$0.amount}.reduce(0, +)
     }
     

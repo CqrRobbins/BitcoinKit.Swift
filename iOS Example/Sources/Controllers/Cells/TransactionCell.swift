@@ -17,8 +17,8 @@ class TransactionCell: UITableViewCell {
 
     func bind(index: Int, transaction: TransactionRecord, coinCode: String, lastBlockHeight: Int?) {
         var confirmations = "n/a"
-
         if let lastBlockHeight = lastBlockHeight, let blockHeight = transaction.blockHeight {
+            print(lastBlockHeight, transaction.blockHeight, "cell")
             confirmations = "\(lastBlockHeight - blockHeight + 1)"
         }
 
