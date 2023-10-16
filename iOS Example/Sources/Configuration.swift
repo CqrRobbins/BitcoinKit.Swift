@@ -10,8 +10,7 @@ class Configuration {
     let purpose = Purpose.bip84
     let defaultWords = [
 //        "current force clump paper shrug extra zebra employ prefer upon mobile hire",
-//        "lock basket subject color juice subject glide robot diet point note episode",
-        "credit denial swamp disagree hold adult loop maximum talk flight food quick"
+        "lock basket subject color juice subject glide robot diet point note episode",
     ]
 
 }

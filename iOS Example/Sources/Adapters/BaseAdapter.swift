@@ -3,7 +3,7 @@ import Combine
 import BitcoinCore
 
 class BaseAdapter {
-    var feeRate: Int { 3 }
+    var feeRate: Int { 10 }
     private let coinRate: Decimal = pow(10, 8)
 
     let name: String
