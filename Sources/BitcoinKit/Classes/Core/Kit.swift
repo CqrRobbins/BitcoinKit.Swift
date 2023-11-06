@@ -41,22 +41,43 @@ public class Kit: AbstractKit {
     public init(extendedKey: HDExtendedKey, purpose: Purpose, walletId: String, syncMode: BitcoinCore.SyncMode = .api, networkType: NetworkType = .mainNet, confirmationsThreshold: Int = 6, enableLogger: Bool = false) throws {
         let network: INetwork
         let logger = enableLogger ? Logger(minLogLevel: .verbose).scoped(with: "EchooWallet-Bitcoin") : nil
-
-        let initialSyncApi: ISyncTransactionApi?
+        
         switch networkType {
             case .mainNet:
                 network = MainNet()
-                initialSyncApi = BlockchainComApi(url: "https://blockchain.info", hsUrl: "https://api.blocksdecoded.com/v1/blockchains/bitcoin", logger: logger)
             case .testNet:
                 network = TestNet()
-                initialSyncApi = BCoinApi(url: "https://btc-testnet.horizontalsystems.xyz/api", logger: logger)
             case .regTest:
                 network = RegTest()
-                initialSyncApi = nil
         }
-
+        
         let databaseFilePath = try DirectoryHelper.directoryURL(for: Kit.name).appendingPathComponent(Kit.databaseFileName(walletId: walletId, networkType: networkType, purpose: purpose, syncMode: syncMode)).path
         let storage = GrdbStorage(databaseFilePath: databaseFilePath)
+        let checkpoint = Checkpoint.resolveCheckpoint(network: network, syncMode: syncMode, storage: storage)
+        let apiSyncStateManager = ApiSyncStateManager(storage: storage, restoreFromApi: network.syncableFromApi && syncMode != BitcoinCore.SyncMode.full)
+
+        let apiTransactionProvider: IApiTransactionProvider?
+        switch networkType {
+            case .mainNet:
+                let hsBlockHashFetcher = HsBlockHashFetcher(hsUrl: "https://api.blocksdecoded.com/v1/blockchains/bitcoin", logger: logger)
+
+                if case .blockchair(let key) = syncMode {
+                    let blockchairApi = BlockchairApi(secretKey: key, chainId: network.blockchairChainId, logger: logger)
+                    let blockchairBlockHashFetcher = BlockchairBlockHashFetcher(blockchairApi: blockchairApi)
+                    let blockHashFetcher = BlockHashFetcher(hsFetcher: hsBlockHashFetcher, blockchairFetcher: blockchairBlockHashFetcher, checkpointHeight: checkpoint.block.height)
+
+                    let blockchairProvider = BlockchairTransactionProvider(blockchairApi: blockchairApi, blockHashFetcher: blockHashFetcher)
+                    let blockchainComProvider = BlockchainComApi(url: "https://blockchain.info", blockHashFetcher: blockHashFetcher, logger: logger)
+
+                    apiTransactionProvider = BiApiBlockProvider(restoreProvider: blockchainComProvider, syncProvider: blockchairProvider, apiSyncStateManager: apiSyncStateManager)
+                } else {
+                    apiTransactionProvider = BlockchainComApi(url: "https://blockchain.info", blockHashFetcher: hsBlockHashFetcher, logger: logger)
+                }
+            case .testNet:
+                apiTransactionProvider = BCoinApi(url: "https://btc-testnet.horizontalsystems.xyz/api", logger: logger)
+            case .regTest:
+                apiTransactionProvider = nil
+        }
 
         let paymentAddressParser = PaymentAddressParser(validScheme: "bitcoin", removeScheme: true)
         let scriptConverter = ScriptConverter()
@@ -84,11 +105,19 @@ public class Kit: AbstractKit {
 
         blockValidatorSet.add(blockValidator: blockValidatorChain)
 
-        let hodler = HodlerPlugin(addressConverter: bitcoinCoreBuilder.addressConverter, blockMedianTimeHelper: BlockMedianTimeHelper(storage: storage), publicKeyStorage: storage)
+        let blockMedianTimeHelper: BlockMedianTimeHelper
+        if case .blockchair = syncMode {
+            blockMedianTimeHelper = BlockMedianTimeHelper(storage: storage, approximate: true)
+        } else {
+            blockMedianTimeHelper = BlockMedianTimeHelper(storage: storage, approximate: false)
+        }
+        let hodler = HodlerPlugin(addressConverter: bitcoinCoreBuilder.addressConverter, blockMedianTimeHelper: blockMedianTimeHelper, publicKeyStorage: storage)
 
         let bitcoinCore = try bitcoinCoreBuilder
                 .set(network: network)
-                .set(initialSyncApi: initialSyncApi)
+                .set(apiTransactionProvider: apiTransactionProvider)
+                .set(checkpoint: checkpoint)
+                .set(apiSyncStateManager: apiSyncStateManager)
                 .set(paymentAddressParser: paymentAddressParser)
                 .set(walletId: walletId)
                 .set(confirmationsThreshold: confirmationsThreshold)

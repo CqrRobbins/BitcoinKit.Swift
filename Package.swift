@@ -14,26 +14,18 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/HEchooo/BitcoinCore.Swift.git", .upToNextMinor(from: "2.1.3")),
+        .package(url: "https://github.com/horizontalsystems/Hodler.Swift.git", .upToNextMajor(from: "2.0.0")),
         .package(url: "https://github.com/horizontalsystems/HdWalletKit.Swift.git", .upToNextMinor(from: "1.2.1")),
-        .package(url: "https://github.com/HEchooo/Hodler.Swift.git", .upToNextMajor(from: "2.0.1")),
         .package(url: "https://github.com/HEchooo/HsToolKit.Swift.git", .upToNextMajor(from: "2.0.5")),
-        .package(url: "https://github.com/horizontalsystems/HsCryptoKit.Swift.git", .upToNextMinor(from: "1.2.1")),
-        .package(url: "https://github.com/horizontalsystems/HsExtensions.Swift.git", .upToNextMajor(from: "1.0.6")),
-        .package(url: "https://github.com/attaswift/BigInt.git", .upToNextMajor(from: "5.0.0")),
-        .package(url: "https://github.com/groue/GRDB.swift.git", .upToNextMajor(from: "6.0.0")),
     ],
     targets: [
         .target(
             name: "BitcoinKit",
             dependencies: [
-                "BigInt",
                 .product(name: "BitcoinCore", package: "BitcoinCore.Swift"),
                 .product(name: "Hodler", package: "Hodler.Swift"),
-                .product(name: "HsCryptoKit", package: "HsCryptoKit.Swift"),
-                .product(name: "HsExtensions", package: "HsExtensions.Swift"),
-                .product(name: "HsToolKit", package: "HsToolKit.Swift"),
                 .product(name: "HdWalletKit", package: "HdWalletKit.Swift"),
-                .product(name: "GRDB", package: "GRDB.swift")
+                .product(name: "HsToolKit", package: "HsToolKit.Swift"),
             ]
         ),
     ]
