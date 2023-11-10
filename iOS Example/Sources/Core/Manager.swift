@@ -6,7 +6,7 @@ import HdWalletKit
 
 class Manager {
     static let shared = Manager()
-    private static let syncModes: [BitcoinCore.SyncMode] = [.full, .api, .newWallet]
+    private static let syncModes: [BitcoinCore.SyncMode] = [.full, .api, .blockchair(key: "")]
 
     private let restoreDataKey = "restore_data"
     private let syncModeKey = "syncMode"
