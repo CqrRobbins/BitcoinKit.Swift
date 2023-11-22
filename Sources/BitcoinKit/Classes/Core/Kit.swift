@@ -51,7 +51,7 @@ public class Kit: AbstractKit {
                 network = RegTest()
         }
         
-        let databaseFilePath = try DirectoryHelper.directoryURL(for: Kit.name, address: walletId).appendingPathComponent(Kit.databaseFileName(walletId: walletId, networkType: networkType, purpose: purpose, syncMode: syncMode)).path
+        let databaseFilePath = try DirectoryHelper.directoryURL(for: Kit.name).appendingPathComponent(Kit.databaseFileName(walletId: walletId, networkType: networkType, purpose: purpose, syncMode: syncMode)).path
         let storage = GrdbStorage(databaseFilePath: databaseFilePath)
         let checkpoint = Checkpoint.resolveCheckpoint(network: network, syncMode: syncMode, storage: storage)
         let apiSyncStateManager = ApiSyncStateManager(storage: storage, restoreFromApi: network.syncableFromApi && syncMode != BitcoinCore.SyncMode.full)
